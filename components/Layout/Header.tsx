@@ -89,7 +89,7 @@ export default function Header() {
 								<Col xs="auto">
 									<MenuIcon />
 								</Col>
-								<Col onMouseEnter={() => setOpenMenu(true)} xs="auto">
+								<Col onClick={()=>setOpenMenu(!isOpenMenu)} onMouseEnter={() => setOpenMenu(true)} xs="auto">
 									دسته بندی‌ها
                             </Col>
 							</Row>
