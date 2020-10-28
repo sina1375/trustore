@@ -9,7 +9,7 @@ import getApiPath from "../../helper/contans";
 import { CartView } from "../../interfaces/cartView";
 
 export default function Cart() {
-    const fetcher = (url: RequestInfo) => fetch(url).then(res => res.json());
+    const fetcher = (url: RequestInfo) => fetch(url,{mode: 'no-cors'}).then(res => res.json());
     const { data, error } = useSWR(getApiPath() + '/cart/GetAllCartItems', fetcher);
 
     if (error) {
