@@ -1,3 +1,3 @@
 export default function getApiPath() {
-    return "http://api.trustore.ir";
+    return "http://trustore.ir";
 } 
