@@ -1,12 +1,12 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import useSWR from "swr";
-import CartItem from "../../components/Cart/CartItem";
-import PreOrder from "../../components/Cart/PreOrder";
+// import CartItem from "../../components/Cart/CartItem";
+// import PreOrder from "../../components/Cart/PreOrder";
 import Spiner from "../../components/Common/Spiner";
 import Layout from "../../components/Layout/Layout";
 import { getDataFetcher } from "../../helper/contans";
-import { CartView } from "../../interfaces/cartView";
+// import { CartView } from "../../interfaces/cartView";
 
 export default function Cart() {
     const fetcher = (url: RequestInfo) => getDataFetcher(url.toString()).then(res => res.json());

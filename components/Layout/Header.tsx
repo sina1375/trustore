@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "reactstrap";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import ButtonBasket from "../Common/ButtonBasket";
 import SearchBox from "../Common/Searchbox";
 import Logo from "../../icons/logo";

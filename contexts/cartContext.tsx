@@ -8,8 +8,8 @@ interface Props {
 
 export const CartContext = React.createContext({
     cartItems: [] as CartView[],
-    addCartItem: (cartItem: CartView) => { },
-    removeCartItem: (cartItem: CartView) => { },
+    addCartItem: (_cartItem: CartView) => { },
+    removeCartItem: (_cartItem: CartView) => { },
 });
 
 export default function CartContextProvider(props: Props) {
