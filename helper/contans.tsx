@@ -1,3 +1,6 @@
 export default function getApiPath() {
-    return "http://trustore.ir";
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const targetUrl = 'http://trustore.ir';
+
+    return proxyUrl + targetUrl;
 } 
