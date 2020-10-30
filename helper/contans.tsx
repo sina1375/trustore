@@ -1,4 +1,3 @@
-import { Handler } from "next-iron-session";
 import { CartView } from "../interfaces/cartView";
 
 function getApiPath() {

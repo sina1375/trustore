@@ -1,9 +1,6 @@
 import React from "react";
-import NumberFormat from "react-number-format";
-import { Col, Container, Row } from "reactstrap";
+import { Container, Row } from "reactstrap";
 import { CartView } from "../../interfaces/cartView";
-import CounterSelector from "../Common/CounterSelector";
-import LazyLoadingImage from "../Common/LazyLoadingImage";
 
 interface Props {
     cartItem: CartView,
