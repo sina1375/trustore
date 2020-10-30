@@ -1,9 +1,8 @@
 import ShoppingBasket from "../../icons/shopping-basket";
 import { Col, Row, Container } from "reactstrap";
 import Button from "./Button";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { CartView } from "../../interfaces/cartView";
-import { getDataFetcher } from "../../helper/contans";
 import { CartContext } from "../../contexts/cartContext";
 
 interface Props {
