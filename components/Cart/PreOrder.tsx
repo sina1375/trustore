@@ -1,16 +1,16 @@
 import React from "react";
 import NumberFormat from "react-number-format";
 import { Container, Row, Col } from "reactstrap";
-import { CartView } from "../../interfaces/cartView";
+// import { CartView } from "../../interfaces/cartView";
 import Button from "../Common/Button";
 
-interface Props {
-    cartItems: CartView[],
-}
+// interface Props {
+//     cartItems: CartView[],
+// }
 
-export default function PreOrder(props: Props) {
-    const sumPrices = props.cartItems.reduce((a, b) => a + b.productView.price, 0);
-    const sumOrginalPrices = props.cartItems.reduce((a, b) => a + b.productView.orginalPrice, 0);
+export default function PreOrder() {
+    const sumPrices = 0;//props.cartItems.reduce((a, b) => a + b.productView.price, 0);
+    const sumOrginalPrices = 0;//props.cartItems.reduce((a, b) => a + b.productView.orginalPrice, 0);
 
     return <Container>
         <Row className="split-bottom pb-3 mb-3">

@@ -21,14 +21,14 @@ export default function Cart() {
         </Layout>
     }
     else {
-        const cartItems = (data as CartView[]);
+        // const cartItems = (data as CartView[]);
 
         return <Layout title="سبد خرید">
             <Container fluid={true} className="cart-container pt-3 pb-3">
                 <Row>
                     <Container>
                         <Row>
-                            <Col xs={8}>
+                            {/* <Col xs={8}>
                                 <Row>
                                     <Col xs={12}>
                                         {cartItems.map(cartItem =>
@@ -39,7 +39,7 @@ export default function Cart() {
                             </Col>
                             <Col className="cart-pre-order-container p-3" xs={4}>
                                 <PreOrder cartItems={cartItems} />
-                            </Col>
+                            </Col> */}
                         </Row>
                     </Container>
                 </Row>
