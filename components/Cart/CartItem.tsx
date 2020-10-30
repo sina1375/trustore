@@ -2,10 +2,10 @@ import React from "react";
 import { Container, Row } from "reactstrap";
 import { CartView } from "../../interfaces/cartView";
 
-interface Props {
-    cartItem: CartView,
-}
-export default function CartItem(props: Props) {
+// interface Props {
+//     cartItem: CartView,
+// }
+export default function CartItem() {
     return <Container className="cart-item-container p-3">
         <Row>
             {/* <Col xs="auto">
