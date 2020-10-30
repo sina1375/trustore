@@ -1,13 +1,14 @@
 import React from "react";
 import { Container, Row } from "reactstrap";
-// import { CartView } from "../../interfaces/cartView";
+import { CartView } from "../../interfaces/cartView";
 
-// interface Props {
-//     cartItem: CartView,
-// }
-export default function CartItem() {
+interface Props {
+    cartItem: CartView,
+}
+export default function CartItem(props: Props) {
     return <Container className="cart-item-container p-3">
         <Row>
+            {props.cartItem.count}
             {/* <Col xs="auto">
                 <LazyLoadingImage alt={props.cartItem.productView.fullTitle} className="cart-item-img" src={props.cartItem.productView.thumbnailImagePath} />
             </Col>
