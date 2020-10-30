@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row } from "reactstrap";
-import { CartView } from "../../interfaces/cartView";
+// import { CartView } from "../../interfaces/cartView";
 
 // interface Props {
 //     cartItem: CartView,
