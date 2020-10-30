@@ -8,7 +8,7 @@ import Layout from "../../components/Layout/Layout";
 import { Paging } from "../../components/Shop/Paging";
 import Product from "../../components/Shop/Product";
 import ProductFilter from "../../components/Shop/ProductFilter";
-import getApiPath from "../../helper/contans";
+import { postDataFetcher } from "../../helper/contans";
 import { ProductsFromBody } from "../../interfaces/productsFromBody";
 import { ShopQuery } from "../../interfaces/shopQuery";
 import { ShopView } from "../../interfaces/shopView";
@@ -160,14 +160,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
             startPrice: queryRes.startPrice,
         }
 
-        const resProduct = await fetch(getApiPath() + '/shop/GetProducts', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(productsFromBody),
-        });
+        const resProduct = await postDataFetcher('/shop/GetProducts', productsFromBody);
         const shop: ShopView = await resProduct.json();
 
         return { props: { shop: shop } }

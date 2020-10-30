@@ -5,7 +5,7 @@ import { CategoryView } from "../../interfaces/categoryView";
 import ProductsDigital from "../../icons/products-digital";
 import { FaChevronLeft } from "react-icons/fa";
 import Link from "next/link";
-import getApiPath from "../../helper/contans";
+import { getDataFetcher } from "../../helper/contans";
 
 interface Props {
     isOpen: boolean,
@@ -25,7 +25,7 @@ export default function Menu(menuProps: Props) {
 
     useEffect(() => {
         async function getData() {
-            const res = await fetch(getApiPath() + '/category/GetAllCategoriesWithChilds')
+            const res = await getDataFetcher('/category/GetAllCategoriesWithChilds');
             const categories: CategoryView[] = await res.json();
             return categories;
         }

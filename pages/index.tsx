@@ -7,7 +7,7 @@ import React from 'react'
 import Services from '../components/Common/Services'
 import ProductListViewer from '../components/Common/ProductListViewer'
 import Link from 'next/link'
-import getApiPath from '../helper/contans'
+import { getDataFetcher } from '../helper/contans'
 
 interface Props {
   homeView?: HomeView,
@@ -91,7 +91,7 @@ export default function IndexPage(props: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ }) => {
   try {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-    const res = await fetch(getApiPath() + '/home/GetHomeDetails');
+    const res = await getDataFetcher('/home/GetHomeDetails');
     const homeDetail: HomeView = await res.json();
 
     return { props: { homeView: homeDetail } }

@@ -2,7 +2,7 @@ import useSWR from 'swr'
 import { ProductProperyView } from "../../interfaces/productPropertyView"
 import { Row, Col, Container } from 'reactstrap';
 import Spiner from '../Common/Spiner';
-import getApiPath from '../../helper/contans';
+import { getDataFetcher } from '../../helper/contans';
 
 interface Props {
     productID: number,
@@ -10,8 +10,8 @@ interface Props {
 
 export default function ProductDetails(props: Props) {
 
-    const fetcher = (url: RequestInfo) => fetch(url).then(res => res.json());
-    const { data, error } = useSWR(getApiPath() + '/product/GetProductDetails?productID=' + props.productID, fetcher);
+    const fetcher = (url: RequestInfo) => getDataFetcher(url.toString()).then(res => res.json());
+    const { data, error } = useSWR('/product/GetProductDetails?productID=' + props.productID, fetcher);
 
     if (error) {
         return <div>خطا</div>

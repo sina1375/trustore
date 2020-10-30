@@ -7,7 +7,7 @@ import Services from "../../components/Common/Services"
 import ProductContainerDetails from "../../components/Product/ProductContanerDetails"
 import { ProductSetVisitorFromBody } from "../../interfaces/productSetVisitorFromBody"
 import { useEffect } from "react"
-import getApiPath from "../../helper/contans"
+import { getDataFetcher, postDataFetcher } from "../../helper/contans"
 
 type Props = {
 	product?: ProductView
@@ -27,14 +27,7 @@ export default function Product(props: Props) {
 						productID: props.product.id,
 						ip: ip,
 					}
-					fetch(getApiPath() + '/product/SetVisitor', {
-						method: 'POST',
-						headers: {
-							'Accept': 'application/json',
-							'Content-Type': 'application/json'
-						},
-						body: JSON.stringify(productSetVisitorFromBody),
-					});
+					postDataFetcher('/product/SetVisitor', productSetVisitorFromBody);
 				}
 			});
 	}
@@ -81,7 +74,7 @@ export default function Product(props: Props) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	try {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-		const res = await fetch(getApiPath() + '/product/GetProduct?productID=' + params?.id);
+		const res = await getDataFetcher('/product/GetProduct?productID=' + params?.id);
 		const product: ProductView = await res.json();
 
 		return { props: { product } }

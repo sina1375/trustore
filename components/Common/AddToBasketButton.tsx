@@ -4,7 +4,7 @@ import Button from "./Button";
 import { AddToCartFromBody } from "../../interfaces/addToCartFomBody";
 import React, { useEffect, useState } from "react";
 import { CartView } from "../../interfaces/cartView";
-import getApiPath from "../../helper/contans";
+import { getDataFetcher, postDataFetcher } from "../../helper/contans";
 
 interface Props {
     productID: number,
@@ -23,18 +23,11 @@ function addCartItem(count: number, productID: number, selectablePropertyValuesI
         selectablePropertyValuesIDs: selectablePropertyValuesIDs
     }
 
-    return fetch(getApiPath() + '/cart/AddToCart', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(addToCartFromBody),
-    }).then(res => res.json()).then(result => result as boolean);
+    return postDataFetcher('/cart/AddToCart', addToCartFromBody).then(res => res.json()).then(result => result as boolean);
 }
 
 function getCartItem(productID: number) {
-    return fetch(getApiPath() + '/cart/GetCartItem?productID=' + productID)
+    return getDataFetcher('/cart/GetCartItem?productID=' + productID)
         .then(res => res.text())
         .then(text => {
             if (text.length) {

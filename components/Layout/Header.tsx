@@ -9,7 +9,7 @@ import Menu from "./Menu";
 import { useTransition, animated } from "react-spring";
 import Popup from "../Common/Popup";
 import LoginCotainerForm from "./LoginCotainerForm";
-import getApiPath from "../../helper/contans";
+import { getDataFetcher } from "../../helper/contans";
 
 export default function Header() {
 	const [basketCount, setbasketCount] = useState(0);
@@ -23,7 +23,7 @@ export default function Header() {
 	});
 
 	useEffect(() => {
-		fetch(getApiPath() + '/cart/GetCartItemCount')
+		getDataFetcher('/cart/GetCartItemCount')
 			.then(res => res.json())
 			.then(result => {
 				const cartCount: number = result;
@@ -89,7 +89,7 @@ export default function Header() {
 								<Col xs="auto">
 									<MenuIcon />
 								</Col>
-								<Col onClick={()=>setOpenMenu(!isOpenMenu)} onMouseEnter={() => setOpenMenu(true)} xs="auto">
+								<Col onClick={() => setOpenMenu(!isOpenMenu)} onMouseEnter={() => setOpenMenu(true)} xs="auto">
 									دسته بندی‌ها
                             </Col>
 							</Row>

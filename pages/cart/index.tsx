@@ -5,12 +5,12 @@ import CartItem from "../../components/Cart/CartItem";
 import PreOrder from "../../components/Cart/PreOrder";
 import Spiner from "../../components/Common/Spiner";
 import Layout from "../../components/Layout/Layout";
-import getApiPath from "../../helper/contans";
+import { getDataFetcher } from "../../helper/contans";
 import { CartView } from "../../interfaces/cartView";
 
 export default function Cart() {
-    const fetcher = (url: RequestInfo) => fetch(url,{mode: 'no-cors'}).then(res => res.json());
-    const { data, error } = useSWR(getApiPath() + '/cart/GetAllCartItems', fetcher);
+    const fetcher = (url: RequestInfo) => getDataFetcher(url.toString()).then(res => res.json());
+    const { data, error } = useSWR('/cart/GetAllCartItems', fetcher);
 
     if (error) {
         return <div>خطا</div>

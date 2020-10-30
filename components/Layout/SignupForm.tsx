@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Col, Row } from "reactstrap";
-import getApiPath from '../../helper/contans';
+import { postDataFetcher } from '../../helper/contans';
 import { SignUpFromBody } from '../../interfaces/signUpFromBody';
 import Button from "../Common/Button";
 
@@ -34,14 +34,7 @@ export default function SignupForm(props: Props) {
                 lastName: lastNameRef.current.value,
             }
 
-            return fetch(getApiPath() + '/user/SignUp', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(signUpFromBody),
-            }).then(res => res.json()).then(result => {
+            return postDataFetcher('/user/SignUp', signUpFromBody).then(res => res.json()).then(result => {
                 alert(result);
             });
         }

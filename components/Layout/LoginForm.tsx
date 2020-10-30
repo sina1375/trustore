@@ -1,6 +1,6 @@
-import { useRef} from 'react';
+import { useRef } from 'react';
 import { Col, Row } from "reactstrap";
-import getApiPath from '../../helper/contans';
+import { postDataFetcher } from '../../helper/contans';
 import { SignInFromBody } from '../../interfaces/signInFromBody';
 import Button from "../Common/Button";
 
@@ -20,14 +20,7 @@ export default function LoginForm(props: Props) {
                 password: passwordRef.current.value
             }
 
-            return fetch(getApiPath() + '/user/SignIn', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(signInFromBody),
-            }).then(res => res.json()).then(result => {
+            return postDataFetcher('/user/SignIn', signInFromBody).then(res => res.json()).then(result => {
                 alert(result);
             });
         }
