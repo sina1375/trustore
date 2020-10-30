@@ -1,10 +1,10 @@
 import ShoppingBasket from "../../icons/shopping-basket";
 import { Col, Row, Container } from "reactstrap";
 import Button from "./Button";
-import { AddToCartFromBody } from "../../interfaces/addToCartFomBody";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CartView } from "../../interfaces/cartView";
-import { getDataFetcher, postDataFetcher } from "../../helper/contans";
+import { getDataFetcher } from "../../helper/contans";
+import { CartContext } from "../../contexts/cartContext";
 
 interface Props {
     productID: number,
@@ -16,68 +16,25 @@ interface Props {
     setCount?: (count: number) => void,
 }
 
-function addCartItem(count: number, productID: number, selectablePropertyValuesIDs: number[]) {
-    const addToCartFromBody: AddToCartFromBody = {
-        count: count,
-        id: productID,
-        selectablePropertyValuesIDs: selectablePropertyValuesIDs
-    }
-
-    return postDataFetcher('/cart/AddToCart', addToCartFromBody).then(res => res.json()).then(result => result as boolean);
-}
-
-function getCartItem(productID: number) {
-    return getDataFetcher('/cart/GetCartItem?productID=' + productID)
-        .then(res => res.text())
-        .then(text => {
-            if (text.length) {
-                return JSON.parse(text);
-            } else {
-                return null;
-            }
-        })
-        .then(result => {
-            if (result !== null) {
-                const cartView: CartView = result;
-                return cartView;
-            }
-            else {
-                return null;
-            }
-        });
-}
-
 export default function AddToBasket(props: Props) {
-
-    const [isAdded, setIsAdded] = useState<boolean | undefined>(undefined);
+    const cartContext = useContext(CartContext);
+    
+    const isAdded = cartContext.cartItems.find(i => i.productID === props.productID) !== undefined;
 
     function addToCart(count: number, productID: number, selectablePropertyValuesIDs: number[]) {
-        return addCartItem(count, productID, selectablePropertyValuesIDs).then(_res => getCartItem(props.productID).then(res => {
-            if (res === null) {
-                setIsAdded(false);
-            }
-            else {
-                setIsAdded(true);
-                if (props.setCount !== undefined) {
-                    props.setCount(res.count);
-                }
-            }
-        }));
-    }
+        const cartItem: CartView = {
+            count: count,
+            productID: productID,
+            selectablePropertyValuesIDs: selectablePropertyValuesIDs,
+        }
 
-    useEffect(() => {
-        getCartItem(props.productID).then(res => {
-            if (res === null) {
-                setIsAdded(false);
-            }
-            else {
-                setIsAdded(true);
-                if (props.setCount !== undefined) {
-                    props.setCount(res.count);
-                }
-            }
-        });
-    }, []);
+        if (isAdded) {
+            cartContext.removeCartItem(cartItem);
+        }
+        else {
+            cartContext.addCartItem(cartItem);
+        }
+    }
 
     if (isAdded === undefined) {
         return <div></div>

@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "reactstrap";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ButtonBasket from "../Common/ButtonBasket";
 import SearchBox from "../Common/Searchbox";
 import Logo from "../../icons/logo";
@@ -9,10 +9,13 @@ import Menu from "./Menu";
 import { useTransition, animated } from "react-spring";
 import Popup from "../Common/Popup";
 import LoginCotainerForm from "./LoginCotainerForm";
-import { getDataFetcher } from "../../helper/contans";
+import { CartContext } from "../../contexts/cartContext";
 
 export default function Header() {
-	const [basketCount, setbasketCount] = useState(0);
+	const cartContext = useContext(CartContext);
+
+	const basketCount = cartContext.cartItems.length;
+
 	const [isOpenMenu, setOpenMenu] = useState(false);
 	const [isOpenLogin, setOpenLogin] = useState(false);
 
@@ -21,15 +24,6 @@ export default function Header() {
 		enter: { opacity: 1 },
 		leave: { opacity: 0 },
 	});
-
-	useEffect(() => {
-		getDataFetcher('/cart/GetCartItemCount')
-			.then(res => res.json())
-			.then(result => {
-				const cartCount: number = result;
-				setbasketCount(cartCount);
-			});
-	}, []);
 
 	return <React.Fragment>
 		<Container fluid={true} className="top-header">

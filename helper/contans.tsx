@@ -1,8 +1,15 @@
-export function getApiPath() {
+import { Handler } from "next-iron-session";
+import { CartView } from "../interfaces/cartView";
+
+function getApiPath() {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const targetUrl = 'http://trustore.ir';
 
     return proxyUrl + targetUrl;
+}
+
+function cartItemSessionKey() {
+    return "cartItems";
 }
 
 export function getDataFetcher(url: string) {
@@ -23,4 +30,26 @@ export function postDataFetcher(url: string, data: any) {
         },
         body: JSON.stringify(data),
     });
+}
+
+export function getCartItemsFromSession() {
+    if (typeof window !== 'undefined') {
+        const cartItemsJson = sessionStorage.getItem(cartItemSessionKey());
+
+        if (cartItemsJson !== null) {
+            const cartItems: CartView[] = JSON.parse(cartItemsJson);
+            return cartItems;
+        } else {
+            return null;
+        }
+    } else {
+        return null;
+    }
+}
+
+export function setCartItemsToSession(cartItems: CartView[]) {
+    if (typeof window !== 'undefined') {
+        const cartItemsJson = JSON.stringify(cartItems);
+        sessionStorage.setItem(cartItemSessionKey(), cartItemsJson);
+    }
 }

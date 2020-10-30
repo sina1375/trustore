@@ -11,7 +11,7 @@ interface Props {
 export default function CartItem(props: Props) {
     return <Container className="cart-item-container p-3">
         <Row>
-            <Col xs="auto">
+            {/* <Col xs="auto">
                 <LazyLoadingImage alt={props.cartItem.productView.fullTitle} className="cart-item-img" src={props.cartItem.productView.thumbnailImagePath} />
             </Col>
             <Col className="d-flex align-items-center">
@@ -25,7 +25,7 @@ export default function CartItem(props: Props) {
             </Col>
             <Col xs="auto" className="d-flex align-items-center split-right">
                 <span className="cart-item-price"><NumberFormat value={props.cartItem.productView.price} displayType={'text'} thousandSeparator={true} /></span><span className="pr-1 symbol">تومان</span>
-            </Col>
+            </Col> */}
         </Row>
     </Container>
 }

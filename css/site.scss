@@ -551,7 +551,6 @@ input.dark{
 }
 
 .add-to-basket {
-	width: 141.9px;
 	height: 37.6px;
 }
 
@@ -1117,6 +1116,28 @@ transition: all 0.5s;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 94%);
   margin-top: -119px;
   position: relative;
+}
+
+.product-detail-more-button{
+	height: 36px;
+	margin-top: -18px;
+	position: relative;
+	
+	cursor: pointer;
+}
+
+.product-detail-more-button-container{
+	border-radius: 26px;
+	background-color: #4ebf7f;
+
+	font-size: 13px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.62;
+	letter-spacing: -0.13px;
+	text-align: right;
+	color: #ffffff;
 }
 
 .product-container {

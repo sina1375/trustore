@@ -60,9 +60,9 @@ export default function Product(props: Props) {
 							<Services />
 						</Col>
 					</Row>
-					<Row className="mb-4">
+					<Row className="pb-4">
 						<Col xs={12}>
-							<ProductContainerDetails productID={props.product.id} type="comment" />
+							<ProductContainerDetails productID={props.product.id} type="detail" />
 						</Col>
 					</Row>
 				</Container>
