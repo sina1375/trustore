@@ -59,7 +59,11 @@ export default function Header() {
 			<Container>
 				<Row>
 					<Col xs={12} sm={2} className="pr-0 pl-0 mb-2 mb-sm-0 d-flex justify-content-center">
-						<Logo />
+						<Link href="/">
+							<a>
+								<Logo />
+							</a>
+						</Link>
 					</Col>
 					<Col className="pr-0 pl-0 pr-sm-3 pl-sm-3">
 						<SearchBox />

@@ -10,6 +10,7 @@ import ColorSelector from "../Common/ColorSelector";
 import { TitleID } from "../../interfaces/titleID";
 import DropDown from "../Common/DropDown";
 import { IoMdShare, IoMdHeartEmpty } from "react-icons/io";
+import ProductHeader from "./ProductHeader";
 
 interface Props {
     product: ProductView
@@ -18,7 +19,6 @@ interface Props {
 export default function ProductContainer(props: Props) {
     const [counter, setCounter] = useState(1);
     const [selectedImage, setSelectedImage] = useState(props.product.imagePaths[0]);
-    const starCount = Number(props.product.rate.toFixed(0));
 
     return <Container>
         <Row>
@@ -31,39 +31,44 @@ export default function ProductContainer(props: Props) {
                 <Row>
                     <Col xs={12}>
                         <Row>
-                            <Col xs={4} className="pr-5 pl-5">
+                            <Col xs={12} className="d-block d-sm-none">
+                                <ProductHeader product={props.product} />
+                            </Col>
+                            <Col xs={12} sm={4} className="pr-5 pl-5">
                                 <Row className="mb-4">
                                     <Col xs={12} className="d-flex justify-content-center">
                                         <LazyLoadingImage alt={props.product.fullTitle} className="product-main-image" src={selectedImage} />
                                     </Col>
                                 </Row>
                                 <Row className="d-flex justify-content-center">
-                                    {props.product.imagePaths.map((image) =>
-                                        <Col xs="auto">
+                                    {props.product.imagePaths.map((image, index) =>
+                                        <Col xs="auto" className={(index === 0 ? "pr-0" : "pr-1 pr-sm-3") + (props.product.imagePaths.length - 1 === index ? " pl-0" : " pl-1 pl-sm-3")}>
                                             <img alt={props.product.fullTitle} className="product-image" src={image} onClick={() => setSelectedImage(image)} />
                                         </Col>
                                     )}
                                 </Row>
                             </Col>
-                            <Col xs={8} className="split-right pr-5 pl-5">
-                                <Row className="mb-3">
-                                    <Col xs={12} className="product-title">
-                                        {props.product.fullTitle}
-                                    </Col>
-                                </Row>
-                                <Row className="mb-4">
-                                    <Col xs={12} className="product-rate">
-                                        <span className={"fa fa-star pl-1 ic-star" + (starCount >= 1 ? " checked" : "")}></span>
-                                        <span className={"fa fa-star pl-1 ic-star" + (starCount >= 2 ? " checked" : "")}></span>
-                                        <span className={"fa fa-star pl-1 ic-star" + (starCount >= 3 ? " checked" : "")}></span>
-                                        <span className={"fa fa-star pl-1 ic-star" + (starCount >= 4 ? " checked" : "")}></span>
-                                        <span className={"fa fa-star pl-1 ic-star" + (starCount >= 5 ? " checked" : "")}></span>
-                                        <span>{" " + props.product.rate + " - "}</span>
-                                        <span className="fa fa-user"></span>
-                                        <span className="pl-3">{" " + props.product.ratedUsersCount}</span>
-                                        <Link href="#comments">نظرات کاربران</Link>
-                                    </Col>
-                                </Row>
+                            <Col xs={12} className="d-block d-sm-none mb-5 mt-3">
+                                <div className="split-bottom" />
+                            </Col>
+                            <Col xs={12} className="d-block d-sm-none">
+                                {props.product.selectableProperties.map((selectableProperty) =>
+                                    <Row className="mb-2">
+                                        <Col xs={2} className="product-selectable-property-title">
+                                            {selectableProperty.title}:
+                                                    </Col>
+                                        <Col xs={10}>
+                                            {selectableProperty.type === 1 ?
+                                                <ColorSelector colors={selectableProperty.values.map(v => { return { ID: v.id, title: v.value } as TitleID })} />
+                                                :
+                                                <DropDown items={selectableProperty.values.map(v => { return { ID: v.id, title: v.value } as TitleID })} />
+                                            }
+                                        </Col>
+                                    </Row>
+                                )}
+                            </Col>
+                            <Col xs={8} className="split-right pr-5 pl-5 d-none d-sm-block">
+                                <ProductHeader product={props.product} />
                                 <Row>
                                     <Col xs={6} className="pl-5">
                                         <Row className="mb-2">
@@ -159,7 +164,7 @@ export default function ProductContainer(props: Props) {
                             <Col xs="auto">
                                 <CounterSelector counter={counter} setCounter={setCounter} />
                             </Col>
-                            <Col xs="auto pr-0">
+                            <Col xs="auto pr-0 d-none d-sm-block">
                                 <AddToBasket type="normal" productID={props.product.id} count={counter} setCount={setCounter} selectablePropertyValuesIDs={[]} />
                             </Col>
                         </React.Fragment>
