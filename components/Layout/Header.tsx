@@ -55,16 +55,16 @@ export default function Header() {
 				</Col>
 			</Row>
 		</Container>
-		<Container fluid={true} className="header">
+		<Container fluid={true} className="header pt-2 pb-2 pt-sm-5 pb-sm-5">
 			<Container>
 				<Row>
-					<Col xs={2}>
+					<Col xs={12} sm={2} className="pr-0 pl-0 mb-2 mb-sm-0 d-flex justify-content-center">
 						<Logo />
 					</Col>
-					<Col>
+					<Col className="pr-0 pl-0 pr-sm-3 pl-sm-3">
 						<SearchBox />
 					</Col>
-					<Col xs="auto">
+					<Col xs="auto" className="pl-0 pr-2 pr-sm-3">
 						<Link href="/cart">
 							<a>
 								<ButtonBasket basketCount={basketCount} />

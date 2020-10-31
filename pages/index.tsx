@@ -29,14 +29,14 @@ export default function IndexPage(props: Props) {
   return <Layout title="خانه">
     {props.homeView &&
       <Container fluid={true}>
-        <Row className="mb-5 mt-5">
+        <Row className="mb-3 mb-sm-5 mt-3 mt-sm-5">
           <Col xs={12}>
-            <Container>
+            <Container className="pr-0 pr-sm-3 pl-3">
               <Row>
-                <Col xs={4}>
+                <Col className="d-none d-sm-block" xs={4}>
                   <StaticMenu categories={props.homeView.categories} />
                 </Col>
-                <Col xs={8} className="d-flex flex-column">
+                <Col className="d-flex flex-column">
                   <Row className="flex-fill mb-2">
                     <Col xs={12} className="slide-image-container pl-0">
                       <Link href={"/shop?group=" + props.homeView.firstSlideGroupID} as={"/shop?group=" + props.homeView.firstSlideGroupID}>
@@ -67,17 +67,17 @@ export default function IndexPage(props: Props) {
             </Container>
           </Col>
         </Row>
-        <Row className="mb-5">
+        <Row className="mb-3 mb-sm-5">
           <Col xs={12}>
             <Services />
           </Col>
         </Row>
-        <Row className="home-dark-row pt-4 pb-4">
+        <Row className="home-dark-row pt-2 pb-2 pt-sm-4 pb-sm-4">
           <Col xs={12}>
             <ProductListViewer title="جدیدترین محصولات" products={props.homeView.newstProducts} />
           </Col>
         </Row>
-        <Row className="pt-4 pb-4">
+        <Row className="pt-2 pb-2 pt-sm-4 pb-sm-4">
           <Col xs={12}>
             <ProductListViewer title="پربازدیدترین محصولات" products={props.homeView.mostVisitsProducts} />
           </Col>

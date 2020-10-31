@@ -6,7 +6,7 @@ import SaveMoney from "../../icons/save-money";
 export default function Services() {
     return <Container className="services">
         <Row className="p-4">
-            <Col xs="auto">
+            <Col className="mb-4 mb-sm-0" xs="auto">
                 <Row>
                     <Col xs="auto" className="services-icon-place">
                         <SaveMoney />
@@ -25,12 +25,12 @@ export default function Services() {
                     </Col>
                 </Row>
             </Col>
-            <Col>
+            <Col xs="auto" className="mb-4 mb-sm-0 mr-0 mr-sm-auto ml-sm-auto">
                 <Row className="d-flex justify-content-center">
                     <Col xs="auto" className="services-icon-place">
                         <Hours />
                     </Col>
-                    <Col xs="auto">
+                    <Col>
                         <Row>
                             <Col xs={12} className="services-master-title">
                                 پشتیبانی در هر زمان

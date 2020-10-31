@@ -3,7 +3,7 @@ interface Props {
 }
 
 export default function Delivery(props: Props) {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="47.189" height="32.715" viewBox="0 0 47.189 32.715" className={props.className && props.className}>
+    return <svg xmlns="http://www.w3.org/2000/svg" width="38.435" height="36.597" viewBox="0 0 47.189 32.715" className={props.className && props.className}>
         <g id="_008-delivery" data-name="008-delivery">
             <g id="Group_19" data-name="Group 19" transform="translate(29.692 20.819)">
                 <g id="Group_18" data-name="Group 18">

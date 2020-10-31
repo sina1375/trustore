@@ -15,7 +15,7 @@ export default function ButtonBasket(props: ButtonBasketProps) {
 						{props.basketCount}
 					</div>}
 			</Col>
-			<Col xs={8} className="d-flex align-items-center button-basket-text split-right">
+			<Col xs={8} className="d-none d-sm-flex align-items-center button-basket-text split-right">
 				سبد خرید شما
             </Col>
 		</Row>
