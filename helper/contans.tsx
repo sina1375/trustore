@@ -5,6 +5,7 @@ function getApiPath() {
     const targetUrl = 'http://trustore.ir';
 
     return proxyUrl + targetUrl;
+    // return "https://localhost:44340";
 }
 
 function cartItemSessionKey() {

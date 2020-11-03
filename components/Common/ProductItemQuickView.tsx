@@ -18,18 +18,18 @@ export default function ProductItemQuickView(props: Props) {
 
     return <Container>
         <Row>
-            <Col xs={9} className="pt-4 pb-4">
-                <Row>
-                    <Col xs={4}>
+            <Col xs={12} sm={9} className="pt-2 pt-sm-4 pb-2 pb-sm-2 d-flex flex-column">
+                <Row className="flex-fill">
+                    <Col xs={12} sm={4} className="d-flex align-items-center">
                         <LazyLoadingImage alt={props.product.fullTitle} className="w-100 h-100" src={props.product.thumbnailImagePath} />
                     </Col>
-                    <Col xs={8} className="split-right">
+                    <Col xs={12} sm={8} className="split-right">
                         <Row className="mb-3">
                             <Col xs={12} className="product-title">
                                 {props.product.fullTitle}
                             </Col>
                         </Row>
-                        <Row className="mb-4">
+                        <Row className="mb-2 mb-sm-4">
                             <Col xs={12} className="product-rate">
                                 <span className={"fa fa-star pl-1 ic-star" + (starCount >= 1 ? " checked" : "")}></span>
                                 <span className={"fa fa-star pl-1 ic-star" + (starCount >= 2 ? " checked" : "")}></span>
@@ -43,7 +43,7 @@ export default function ProductItemQuickView(props: Props) {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs={12} className="pl-5">
+                            <Col xs={12} className="pl-2 pl-sm-5">
                                 <Row className="mb-2">
                                     <Col xs={12} className="product-property-title">
                                         ویژگی‌های محصول
@@ -73,9 +73,9 @@ export default function ProductItemQuickView(props: Props) {
                     </Col>
                 </Row>
             </Col>
-            <Col xs={3} className="product-item-quick-view-left-container split-right pt-5">
+            <Col xs={12} sm={3} className="product-item-quick-view-left-container split-right pt-2 pt-sm-5">
                 {props.product.price === 0 ?
-                    <Row className="mb-5">
+                    <Row className="mb-2 mb-sm-5">
                         <Col className="product-unavailable">
                             ناموجود
                         </Col>
@@ -87,14 +87,14 @@ export default function ProductItemQuickView(props: Props) {
                                 <NumberFormat value={props.product.price} displayType={'text'} thousandSeparator={true} /><span className="pr-1 symbol">تومان</span>
                             </Col>
                         </Row>
-                        <Row className="mb-5">
+                        <Row className="mb-2 mb-sm-5">
                             <Col xs={12} style={{ visibility: (props.product.price !== props.product.orginalPrice) ? "visible" : "hidden" }} className="product-item-quick-view-price-discount">
                                 <NumberFormat value={props.product.orginalPrice} displayType={'text'} thousandSeparator={true} /><span className="pr-1 symbol">تومان</span>
                             </Col>
                         </Row>
                     </React.Fragment>
                 }
-                <Row className="mb-5">
+                <Row className="mb-2 mb-sm-5">
                     <Col xs={6}>
                         {props.product.price !== 0 &&
                             <AddToBasket selectablePropertyValuesIDs={[]} productID={props.product.id} count={1} type="quick" />
@@ -110,7 +110,7 @@ export default function ProductItemQuickView(props: Props) {
                         </div>
                     </Col>
                 </Row>
-                <Row className="mb-1">
+                <Row className="mb-1 d-none d-sm-flex">
                     <Col xs={3} className="d-flex align-items-center justify-content-center">
                         <SaveMoney className="product-item-quick-view-services-ic" />
                     </Col>
@@ -118,7 +118,7 @@ export default function ProductItemQuickView(props: Props) {
                         ضمانت بازگشت پول
                     </Col>
                 </Row>
-                <Row className="mb-1">
+                <Row className="mb-1 d-none d-sm-flex">
                     <Col xs={3} className="d-flex align-items-center justify-content-center">
                         <Hours className="product-item-quick-view-services-ic" />
                     </Col>
@@ -126,7 +126,7 @@ export default function ProductItemQuickView(props: Props) {
                         پشتیبانی در هر زمان
                     </Col>
                 </Row>
-                <Row className="mb-5">
+                <Row className="mb-5 d-none d-sm-flex">
                     <Col xs={3} className="d-flex align-items-center justify-content-center">
                         <Delivery className="product-item-quick-view-services-ic-delivery" />
                     </Col>

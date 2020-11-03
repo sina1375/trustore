@@ -11,4 +11,11 @@ export interface ProductView {
     imagePaths: string[],
     mainProperties: ProductProperyView[],
     selectableProperties: ProductProperyView[],
+
+    category: string,
+    categoryID: number,
+    categoryKind: string,
+    categoryKindID: number,
+    parent: string,
+    parentID?: number,
 }

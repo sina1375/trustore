@@ -49,7 +49,7 @@ export default function ProductListViewer(propsProductListViewer: Props) {
                         </Row>
                     </Col>
                 </Row>
-                <div ref={containerRef} className="row d-flex flex-nowrap overflow-hidden">
+                <div ref={containerRef} className="row d-flex flex-nowrap product-list-viewer">
                     {propsProductListViewer.products.map(product =>
                         <ProductListViewerItem product={product} />
                     )}

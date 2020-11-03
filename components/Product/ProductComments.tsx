@@ -17,10 +17,10 @@ export default function ProductComments() {
 
     return <React.Fragment>
         <Row>
-            <Col xs="auto" className="d-flex align-items-start pl-0">
+            <Col xs="auto" className="d-flex align-items-start pl-0 pb-2 pb-sm-0">
                 <MdChatBubbleOutline color="#619fd5" fontSize="15px" />
             </Col>
-            <Col xs="auto" className="d-flex align-items-end pl-0 pr-0">
+            <Col xs="auto" className="d-flex align-items-end pl-0 pr-0 pb-2 pb-sm-0">
                 <User />
             </Col>
             <Col className="product-comment-title" xs="auto">
@@ -29,7 +29,7 @@ export default function ProductComments() {
                         شما هم می‌توانید در مورد این کالا نظر بدهید
                 </Col>
                 </Row>
-                <Row className="subtitle">
+                <Row className="subtitle pb-2 pb-sm-0">
                     <Col xs={12}>
                         برای ثبت نظر، لازم است ابتدا وارد حساب کاربری خود شوید
                 </Col>

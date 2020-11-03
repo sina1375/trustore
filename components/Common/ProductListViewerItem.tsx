@@ -16,7 +16,7 @@ export default function ProductListViewerItem(props: Props) {
 
     return <Col xs={12} s={6} md={6} lg={4} xl={3} className="mb-5">
         <Container className="product-list-viewer-item-container">
-            <Row onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+            <Row onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)} onMouseUp={() => setHover(false)}>
                 <Col xs={12}>
                     <LazyLoadingImage alt={props.product.fullTitle} className="product-list-viewer-item-img p-2" src={props.product.thumbnailImagePath} />
                     <ProductItemHover isHover={isHover} product={props.product} />

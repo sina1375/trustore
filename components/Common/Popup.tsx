@@ -1,5 +1,6 @@
 import { animated, useTransition } from "react-spring";
 import React from "react";
+import { BsX } from "react-icons/bs";
 
 interface Props {
     isOpen: boolean,
@@ -22,6 +23,7 @@ export default function Popup(popupProps: Props) {
                 item &&
                 <animated.div onClick={() => popupProps.setOpen(false)} style={props} className="container-fluid popup d-flex align-items-center justify-content-center">
                     <div onClick={e => e.stopPropagation()} className={"popup-container" + (popupProps.className && " " + popupProps.className)}>
+                        <div className="popup-exit" onClick={()=>popupProps.setOpen(false)}><BsX /></div>
                         {popupProps.children}
                     </div>
                 </animated.div>

@@ -6,8 +6,10 @@ import ProductContainer from "../../components/Product/ProductContainer"
 import Services from "../../components/Common/Services"
 import ProductContainerDetails from "../../components/Product/ProductContanerDetails"
 import { ProductSetVisitorFromBody } from "../../interfaces/productSetVisitorFromBody"
-import { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { getDataFetcher, postDataFetcher } from "../../helper/contans"
+import ProductListViewer from "../../components/Common/ProductListViewer"
+import Spiner from "../../components/Common/Spiner"
 
 type Props = {
 	product?: ProductView
@@ -15,6 +17,8 @@ type Props = {
 }
 
 export default function Product(props: Props) {
+
+	const [relatedProducts, setRelatedProducts] = useState<ProductView[]>();
 
 	function setVisitor() {
 		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -32,7 +36,21 @@ export default function Product(props: Props) {
 			});
 	}
 
-	useEffect(setVisitor, []);
+	useEffect(() => {
+		setVisitor();
+		getRelatedProduct();
+	}, [props.product]);
+
+	function getRelatedProduct() {
+		if (props.product) {
+			getDataFetcher('/product/GetRelatedProducts?productID=' + props.product.id)
+				.then(res => res.json())
+				.then(json => {
+					const _relatedProducts: ProductView[] = json;
+					setRelatedProducts(_relatedProducts);
+				});
+		}
+	}
 
 	if (props.errors) {
 		return (
@@ -63,6 +81,15 @@ export default function Product(props: Props) {
 					<Row className="pb-4">
 						<Col xs={12}>
 							<ProductContainerDetails productID={props.product.id} type="detail" />
+						</Col>
+					</Row>
+					<Row className="pb-4">
+						<Col xs={12} className={relatedProducts?"":"p-5"}>
+							{relatedProducts ?
+								<ProductListViewer title="محصولات مرتبط" products={relatedProducts} />
+								:
+								<Spiner />
+							}
 						</Col>
 					</Row>
 				</Container>

@@ -1,45 +1,58 @@
-import React from "react";
-import { Container, Row } from "reactstrap";
-import useSWR from "swr";
+import { GetServerSideProps } from "next";
+import React, { useContext, useEffect, useState } from "react";
+import { Col, Container, Row } from "reactstrap";
+import CartItem from "../../components/Cart/CartItem";
+import PreOrder from "../../components/Cart/PreOrder";
 // import CartItem from "../../components/Cart/CartItem";
 // import PreOrder from "../../components/Cart/PreOrder";
 import Spiner from "../../components/Common/Spiner";
 import Layout from "../../components/Layout/Layout";
-import { getDataFetcher } from "../../helper/contans";
+import { CartContext } from "../../contexts/cartContext";
+import { postDataFetcher } from "../../helper/contans";
+import { ProductView } from "../../interfaces/productView";
 // import { CartView } from "../../interfaces/cartView";
 
 export default function Cart() {
-    const fetcher = (url: RequestInfo) => getDataFetcher(url.toString()).then(res => res.json());
-    const { data, error } = useSWR('/cart/GetAllCartItems', fetcher);
+    const cartContext = useContext(CartContext);
 
-    if (error) {
-        return <div>خطا</div>
-    }
-    else if (!data) {
+    const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState<ProductView[]>([]);
+
+    useEffect(() => {
+        postDataFetcher('/product/GetProducts', cartContext.cartItems.map(c => c.productID))
+            .then(res => res.json())
+            .then(json => {
+                const _products: ProductView[] = json;
+
+                setProducts(_products);
+                setLoading(false);
+            });
+    }, [])
+
+
+    if (loading) {
         return <Layout title="سبد خرید">
             <Spiner />
         </Layout>
     }
     else {
-        // const cartItems = (data as CartView[]);
-
         return <Layout title="سبد خرید">
             <Container fluid={true} className="cart-container pt-3 pb-3">
                 <Row>
                     <Container>
                         <Row>
-                            {/* <Col xs={8}>
+                            <Col xs={12} sm={8} className="mb-2 mb-sm-3">
                                 <Row>
                                     <Col xs={12}>
-                                        {cartItems.map(cartItem =>
-                                            <CartItem cartItem={cartItem} />
+                                        {cartContext.cartItems.map(cartItem =>
+                                            <CartItem cartItem={cartItem} product={products.find(i => cartItem.productID === i.id)} />
                                         )}
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col className="cart-pre-order-container p-3" xs={4}>
-                                <PreOrder cartItems={cartItems} />
-                            </Col> */}
+                            <Col xs={12} sm={4}>
+                                <PreOrder products={products} />
+                            </Col>
                         </Row>
                     </Container>
                 </Row>

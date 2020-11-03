@@ -26,12 +26,12 @@ export default function ProductDetails(props: Props) {
                 {properties.map((property =>
                     <Row className="mb-2">
                         <Col xs={4} className="pl-0 pr-2">
-                            <Container className="pr-5 pt-2 pb-2 product-detail-property">
+                            <Container className="p-2 pr-sm-5 product-detail-property">
                                 {property.title}
                             </Container>
                         </Col>
                         <Col xs={8} className="pl-0 pr-2">
-                            <Container className="pr-5 pt-2 pb-2 product-detail-property">
+                            <Container className="p-2 pr-sm-5 product-detail-property">
                                 {property.values.map((value) => value.value).join(" / ")}
                             </Container>
                         </Col>

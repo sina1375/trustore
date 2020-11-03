@@ -10,14 +10,14 @@ interface Props {
     count: number,
     selectablePropertyValuesIDs: number[],
 
-    type: "simple" | "normal" | "quick" | "listViewer",
+    type: "simple" | "normal" | "normal-mobile" | "quick" | "listViewer",
 
     setCount?: (count: number) => void,
 }
 
 export default function AddToBasket(props: Props) {
     const cartContext = useContext(CartContext);
-    
+
     const isAdded = cartContext.cartItems.find(i => i.productID === props.productID) !== undefined;
 
     function addToCart(count: number, productID: number, selectablePropertyValuesIDs: number[]) {
@@ -43,10 +43,23 @@ export default function AddToBasket(props: Props) {
             return <Button type={isAdded ? "secondary" : "primary"} onClick={() => addToCart(props.count, props.productID, props.selectablePropertyValuesIDs)} withoutPadding={true}>
                 <Container className="add-to-basket">
                     <Row className="h-100">
-                        <Col className="d-flex align-items-center pl-0">
+                        <Col xs="auto" className="d-flex align-items-center pl-0">
                             <ShoppingBasket className={"shopping-basket-add-to-basket-button" + (isAdded ? " remove" : "")} />
                         </Col>
-                        <Col xs="auto" className="d-flex align-items-center">
+                        <Col className="d-flex align-items-center justify-content-center">
+                            {isAdded ? "حذف از سبد خرید" : "افزودن به سبد"}
+                        </Col>
+                    </Row>
+                </Container>
+            </Button>
+        } else if (props.type === "normal-mobile") {
+            return <Button type={isAdded ? "secondary" : "primary"} className="rounded-0 p-1" onClick={() => addToCart(props.count, props.productID, props.selectablePropertyValuesIDs)} withoutPadding={true}>
+                <Container className="add-to-basket">
+                    <Row className="h-100">
+                        <Col xs="auto" className="d-flex align-items-center pl-0">
+                            <ShoppingBasket className={"shopping-basket-add-to-basket-button" + (isAdded ? " remove" : "")} />
+                        </Col>
+                        <Col className="d-flex align-items-center justify-content-center">
                             {isAdded ? "حذف از سبد خرید" : "افزودن به سبد"}
                         </Col>
                     </Row>

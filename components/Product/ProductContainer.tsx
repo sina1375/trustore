@@ -2,7 +2,7 @@ import { ProductView } from "../../interfaces/productView";
 import { Container, Col, Row } from "reactstrap";
 import LazyLoadingImage from "../Common/LazyLoadingImage";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CounterSelector from "../Common/CounterSelector";
 import AddToBasket from "../Common/AddToBasketButton";
 import NumberFormat from 'react-number-format';
@@ -11,6 +11,8 @@ import { TitleID } from "../../interfaces/titleID";
 import DropDown from "../Common/DropDown";
 import { IoMdShare, IoMdHeartEmpty } from "react-icons/io";
 import ProductHeader from "./ProductHeader";
+import SiteMap, { CreateSiteMap } from "../Common/SiteMap";
+import { SiteMapItemView } from "../../interfaces/siteMapItemView";
 
 interface Props {
     product: ProductView
@@ -20,11 +22,27 @@ export default function ProductContainer(props: Props) {
     const [counter, setCounter] = useState(1);
     const [selectedImage, setSelectedImage] = useState(props.product.imagePaths[0]);
 
+    const [siteMap, setSiteMap] = useState<SiteMapItemView[]>([]);
+
+    useEffect(() => {
+        const _siteMap = CreateSiteMap(
+            props.product.categoryID,
+            props.product.category,
+            props.product.parentID,
+            props.product.parent,
+            props.product.categoryKindID,
+            props.product.categoryKind,
+            props.product.id,
+            props.product.fullTitle);
+
+        setSiteMap(_siteMap);
+    }, []);
+
     return <Container>
         <Row>
-            <Col xs={12}>
-                sitemap
-                </Col>
+            <Col xs={12} className="pr-0 pt-2 pb-2 pl-0">
+                <SiteMap siteMapItemView={siteMap} />
+            </Col>
         </Row>
         <Row>
             <Col xs={12} className="product-box p-4">
@@ -67,9 +85,9 @@ export default function ProductContainer(props: Props) {
                                     </Row>
                                 )}
                             </Col>
-                            <Col xs={8} className="split-right pr-5 pl-5 d-none d-sm-block">
+                            <Col xs={8} className="split-right pr-5 pl-5 d-none d-sm-flex flex-column">
                                 <ProductHeader product={props.product} />
-                                <Row>
+                                <Row className="flex-fill">
                                     <Col xs={6} className="pl-5">
                                         <Row className="mb-2">
                                             <Col xs={12} className="product-property-title">
@@ -123,29 +141,27 @@ export default function ProductContainer(props: Props) {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs="auto" className="pr-5 pl-4 product-links d-flex align-items-center">
+                    <Col xs="auto" className="pr-5 pl-4 product-links d-none d-sm-flex align-items-center">
                         <Link href="/share">
                             <a>
                                 <IoMdShare fontSize="24px" />
                             </a>
                         </Link>
                     </Col>
-                    <Col xs="auto" className="pr-4 product-links d-flex align-items-center split-right">
+                    <Col xs="auto" className="pr-4 product-links d-none d-sm-flex align-items-center split-right">
                         <Link href="/like">
                             <a>
                                 <IoMdHeartEmpty fontSize="24px" />
                             </a>
                         </Link>
                     </Col>
-                    <Col>
-                    </Col>
                     {props.product.price === 0 ?
-                        <Col className="product-unavailable text-left">
+                        <Col className="product-unavailable text-left mr-auto">
                             ناموجود
                         </Col>
                         :
                         <React.Fragment>
-                            <Col xs="auto">
+                            <Col xs="auto" className="mr-0 mr-sm-auto">
                                 <Row className={"d-flex align-items-center" + (props.product.price !== props.product.orginalPrice ? "" : " h-100")}>
                                     <Col xs={12} className="product-price">
                                         <NumberFormat value={props.product.price} displayType={'text'} thousandSeparator={true} /><span className="pr-1 symbol">تومان</span>
@@ -158,7 +174,7 @@ export default function ProductContainer(props: Props) {
                                         </Col>
                                     </Row> : <React.Fragment></React.Fragment>}
                             </Col>
-                            <Col xs="auto" className="pl-0 pr-4 d-flex align-items-center counter-selector-title">
+                            <Col xs="auto" className="pl-0 pr-4 d-flex align-items-center counter-selector-title mr-auto mr-sm-0">
                                 تعداد
                             </Col>
                             <Col xs="auto">
@@ -166,6 +182,9 @@ export default function ProductContainer(props: Props) {
                             </Col>
                             <Col xs="auto pr-0 d-none d-sm-block">
                                 <AddToBasket type="normal" productID={props.product.id} count={counter} setCount={setCounter} selectablePropertyValuesIDs={[]} />
+                            </Col>
+                            <Col xs={12} className="product-add-to-basket-mobile-container p-0 d-block d-sm-none">
+                                <AddToBasket type="normal-mobile" productID={props.product.id} count={counter} setCount={setCounter} selectablePropertyValuesIDs={[]} />
                             </Col>
                         </React.Fragment>
                     }
