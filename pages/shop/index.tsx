@@ -144,8 +144,6 @@ export default function Shop(props: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     try {
-        process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
         const queryRes = getQuery(query);
 
         const productsFromBody: ProductsFromBody = {

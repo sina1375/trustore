@@ -21,7 +21,6 @@ export default function Product(props: Props) {
 	const [relatedProducts, setRelatedProducts] = useState<ProductView[]>();
 
 	function setVisitor() {
-		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 		fetch("https://extreme-ip-lookup.com/json")
 			.then(res => res.json())
 			.then(json => json.query)
@@ -100,7 +99,6 @@ export default function Product(props: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	try {
-		process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 		const res = await getDataFetcher('/product/GetProduct?productID=' + params?.id);
 		const product: ProductView = await res.json();
 

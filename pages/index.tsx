@@ -90,7 +90,6 @@ export default function IndexPage(props: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ }) => {
   try {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
     const res = await getDataFetcher('/home/GetHomeDetails');
     const homeDetail: HomeView = await res.json();
 
