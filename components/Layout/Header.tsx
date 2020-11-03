@@ -10,6 +10,7 @@ import { useTransition, animated } from "react-spring";
 import Popup from "../Common/Popup";
 import LoginCotainerForm from "./LoginCotainerForm";
 import { CartContext } from "../../contexts/cartContext";
+import MenuMobile from "./MenuMobile";
 
 export default function Header() {
 	const cartContext = useContext(CartContext);
@@ -82,14 +83,14 @@ export default function Header() {
 			<Container fluid={true} className="split-bottom">
 				<Container className="p-2">
 					<Row>
-						<Col className="menu-button" xs="auto">
+						<Col onMouseUp={() => setOpenMenu(!isOpenMenu)} onMouseEnter={() => setOpenMenu(true)} className="menu-button" xs="auto">
 							<Row>
 								<Col xs="auto">
 									<MenuIcon />
 								</Col>
-								<Col onClick={() => setOpenMenu(!isOpenMenu)} onMouseEnter={() => setOpenMenu(true)} xs="auto">
+								<Col xs="auto">
 									دسته بندی‌ها
-                            </Col>
+                            	</Col>
 							</Row>
 						</Col>
 						<Col className="bottom-header-link" xs="auto">
@@ -105,7 +106,8 @@ export default function Header() {
 					</Row>
 				</Container>
 			</Container>
-			<Menu isOpen={isOpenMenu} setOpen={setOpenMenu} />
+			<MenuMobile className="d-block d-sm-none" isOpen={isOpenMenu} setOpen={setOpenMenu} />
+			<Menu className="d-none d-sm-block" isOpen={isOpenMenu} setOpen={setOpenMenu} />
 		</Container>
 		{transitions.map(({ item, props }) =>
 			item &&

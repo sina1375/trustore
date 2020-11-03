@@ -29,10 +29,6 @@
 	src: url(../fonts/fa-regular-400.ttf);
 }
 
-html{
-	overflow-x: hidden;
-}
-
 body {
 	overflow-x: hidden;
 	margin: 0;
@@ -547,6 +543,8 @@ input.dark{
 	height: 100%;
 	position: absolute;
 	z-index: 11;
+	left:0;
+	right:0;
 }
 
 .menu-main-container{
@@ -588,6 +586,10 @@ input.dark{
 	text-align: right;
 	color: #5d8ec5;
 	cursor: pointer;
+}
+
+.menu-category-kind-container{
+	background-color: #ffffff;
 }
 
 .menu-category-kind-child{
@@ -1309,7 +1311,7 @@ transition: all 0.5s;
 	position: fixed !important;
 	bottom:0;
 	left:0;
-	z-index: 11;
+	z-index: 9;
 }
 
 .product-links {

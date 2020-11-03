@@ -9,6 +9,7 @@ import { getDataFetcher } from "../../helper/contans";
 import Spiner from "../Common/Spiner";
 
 interface Props {
+    className?: string,
     isOpen: boolean,
     setOpen: (isOpen: boolean) => void,
 }
@@ -47,7 +48,7 @@ export default function Menu(menuProps: Props) {
         {
             transitions.map(({ item, props }) =>
                 item &&
-                <animated.div style={props} className="container-fluid menu-container">
+                <animated.div style={props} className={"container-fluid menu-container" + (menuProps.className && " " + menuProps.className)}>
                     <Row onMouseLeave={() => menuProps.setOpen(false)}>
                         <Col xs={12}>
                             <Container className="menu-main-container">
