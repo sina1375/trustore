@@ -1,16 +1,12 @@
-import { GetServerSideProps } from "next";
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import CartItem from "../../components/Cart/CartItem";
 import PreOrder from "../../components/Cart/PreOrder";
-// import CartItem from "../../components/Cart/CartItem";
-// import PreOrder from "../../components/Cart/PreOrder";
 import Spiner from "../../components/Common/Spiner";
 import Layout from "../../components/Layout/Layout";
 import { CartContext } from "../../contexts/cartContext";
 import { postDataFetcher } from "../../helper/contans";
 import { ProductView } from "../../interfaces/productView";
-// import { CartView } from "../../interfaces/cartView";
 
 export default function Cart() {
     const cartContext = useContext(CartContext);
