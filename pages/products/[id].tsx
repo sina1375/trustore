@@ -91,7 +91,7 @@ export default function Product(props: Props) {
 							<ProductContainerDetails productID={props.product.id} type="detail" />
 						</Col>
 					</Row>
-					<Row className="mb-4 d-block d-sm-none">
+					<Row className="pb-4 d-block d-sm-none">
 						<Col xs={12}>
 							<Services />
 						</Col>
