@@ -67,7 +67,7 @@ export default function IndexPage(props: Props) {
             </Container>
           </Col>
         </Row>
-        <Row className="mb-3 mb-sm-5">
+        <Row className="mb-3 d-none d-sm-block">
           <Col xs={12}>
             <Services />
           </Col>
@@ -80,6 +80,11 @@ export default function IndexPage(props: Props) {
         <Row className="pt-2 pb-2 pt-sm-4 pb-sm-4">
           <Col xs={12}>
             <ProductListViewer title="پربازدیدترین محصولات" products={props.homeView.mostVisitsProducts} />
+          </Col>
+        </Row>
+        <Row className="d-block d-sm-none">
+          <Col xs={12}>
+            <Services />
           </Col>
         </Row>
       </Container>

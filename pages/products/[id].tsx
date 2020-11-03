@@ -72,14 +72,9 @@ export default function Product(props: Props) {
 							<ProductContainer product={props.product} />
 						</Col>
 					</Row>
-					<Row className="mb-4">
+					<Row className="mb-4 d-none d-sm-block">
 						<Col xs={12}>
 							<Services />
-						</Col>
-					</Row>
-					<Row className="pb-4">
-						<Col xs={12}>
-							<ProductContainerDetails productID={props.product.id} type="detail" />
 						</Col>
 					</Row>
 					<Row className="pb-4">
@@ -89,6 +84,16 @@ export default function Product(props: Props) {
 								:
 								<Spiner />
 							}
+						</Col>
+					</Row>
+					<Row className="pb-4">
+						<Col xs={12}>
+							<ProductContainerDetails productID={props.product.id} type="detail" />
+						</Col>
+					</Row>
+					<Row className="mb-4 d-block d-sm-none">
+						<Col xs={12}>
+							<Services />
 						</Col>
 					</Row>
 				</Container>
