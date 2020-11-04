@@ -110,7 +110,7 @@ export default function Shop(props: Props) {
 
     return <Layout title="فروشگاه">
         {props.shop?.products &&
-            <Container fluid={true} className="shop-container pt-2 pt-sm-4">
+            <Container fluid={true} className="shop-container pt-2">
                 <Row>
                     <Col xs={12}>
                         <Container>
@@ -129,7 +129,7 @@ export default function Shop(props: Props) {
                                     />
                                 </Col>
                                 <Col xs={12} sm={9}>
-                                    <Row className="mb-2 mb-sm-4">
+                                    <Row className="mb-2">
                                         <SiteMap siteMapItemView={siteMap} />
                                     </Row>
                                     <Row>
