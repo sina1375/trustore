@@ -16,6 +16,7 @@ import { ProductsFromBody } from "../../interfaces/productsFromBody";
 import { ShopQuery } from "../../interfaces/shopQuery";
 import { ShopView } from "../../interfaces/shopView";
 import { SiteMapItemView } from "../../interfaces/siteMapItemView";
+import { FaFilter } from "react-icons/fa";
 
 interface Props {
     shop?: ShopView,
@@ -153,7 +154,8 @@ export default function Shop(props: Props) {
                 </Row>
                 <Row className="product-filter-mobile-button d-block d-sm-none">
                     <Button type="secondary2" onClick={() => setPopupFilterOpen(true)} className="rounded-0">
-                        فیلتر
+                        <span className="pl-1"><FaFilter /></span>
+                        <span>فیلتر</span>
                     </Button>
                 </Row>
                 <Popup isOpen={popupFilterOpen} setOpen={setPopupFilterOpen} className="container p-0">
