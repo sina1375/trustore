@@ -152,7 +152,7 @@ export default function Shop(props: Props) {
                     </Col>
                 </Row>
                 <Row className="product-filter-mobile-button d-block d-sm-none">
-                    <Button type="secondary" onClick={() => setPopupFilterOpen(true)} className="rounded-0">
+                    <Button type="secondary2" onClick={() => setPopupFilterOpen(true)} className="rounded-0">
                         فیلتر
                     </Button>
                 </Row>

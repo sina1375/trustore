@@ -53,7 +53,7 @@ export default function AddToBasket(props: Props) {
                 </Container>
             </Button>
         } else if (props.type === "normal-mobile") {
-            return <Button type={isAdded ? "secondary" : "primary"} className="rounded-0 p-1" onClick={() => addToCart(props.count, props.productID, props.selectablePropertyValuesIDs)} withoutPadding={true}>
+            return <Button type={isAdded ? "secondary" : "primary"} className="rounded-0 p-2" onClick={() => addToCart(props.count, props.productID, props.selectablePropertyValuesIDs)} withoutPadding={true}>
                 <Container className="add-to-basket">
                     <Row className="h-100">
                         <Col xs="auto" className="d-flex align-items-center pl-0">
