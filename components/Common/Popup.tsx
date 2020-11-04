@@ -1,6 +1,7 @@
 import { animated, useTransition } from "react-spring";
 import React from "react";
 import { BsX } from "react-icons/bs";
+import useMeasure from "react-use-measure";
 
 interface Props {
     isOpen: boolean,
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export default function Popup(popupProps: Props) {
+
+    const [contentBoundsRef, contentBounds] = useMeasure();
 
     const transitions = useTransition(popupProps.isOpen, null, {
         from: { opacity: 0 },
@@ -21,9 +24,9 @@ export default function Popup(popupProps: Props) {
         {
             transitions.map(({ item, props }) =>
                 item &&
-                <animated.div onClick={() => popupProps.setOpen(false)} style={props} className="container-fluid popup d-flex align-items-center justify-content-center">
-                    <div onClick={e => e.stopPropagation()} className={"popup-container" + (popupProps.className && " " + popupProps.className)}>
-                        <div className="popup-exit" onClick={()=>popupProps.setOpen(false)}><BsX /></div>
+                <animated.div ref={contentBoundsRef} onClick={() => popupProps.setOpen(false)} style={props} className="container-fluid popup d-flex align-items-center justify-content-center">
+                    <div onClick={e => e.stopPropagation()} style={{ maxHeight: (contentBounds.height / 2) }} className={"popup-container" + (popupProps.className && " " + popupProps.className)}>
+                        <div className="popup-exit" onClick={() => popupProps.setOpen(false)}><BsX /></div>
                         {popupProps.children}
                     </div>
                 </animated.div>

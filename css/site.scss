@@ -332,6 +332,7 @@ input.dark{
 	border-radius: 4px;
 	background-color: #ffffff;
 	position: relative;
+	overflow: auto;
 }
 
 .popup-exit
@@ -903,6 +904,12 @@ input.dark{
 	letter-spacing: normal;
 	text-align: center;
 	color: #ebebeb;
+}
+.product-filter-mobile-button{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 9;
 }
 
 .product-filter-container{

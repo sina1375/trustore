@@ -1,9 +1,11 @@
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { UrlObject } from "url";
+import Button from "../../components/Common/Button";
+import Popup from "../../components/Common/Popup";
 import Layout from "../../components/Layout/Layout";
 import { Paging } from "../../components/Shop/Paging";
 import Product from "../../components/Shop/Product";
@@ -44,6 +46,8 @@ function getParameterIDs(parameter: string | string[]) {
 }
 
 export default function Shop(props: Props) {
+    const [popupFilterOpen, setPopupFilterOpen] = useState(false);
+
     const router = useRouter();
     var query = getQuery(router.query);
 
@@ -101,7 +105,7 @@ export default function Shop(props: Props) {
                     <Col xs={12}>
                         <Container>
                             <Row>
-                                <Col xs={3}>
+                                <Col xs={3} className="d-none d-sm-block">
                                     <ProductFilter
                                         categoryKindView={props.shop.categoryKind}
                                         setCategoryKind={setCategoryKind}
@@ -114,7 +118,7 @@ export default function Shop(props: Props) {
                                         setProductProperies={setProductProperies}
                                     />
                                 </Col>
-                                <Col xs={9}>
+                                <Col xs={12} sm={9}>
                                     <Row className="mb-4">
 
                                     </Row>
@@ -128,15 +132,33 @@ export default function Shop(props: Props) {
                                 </Col>
                             </Row>
                             <Row className="mb-4">
-                                <Col xs={3}>
+                                <Col xs={3} className="d-none d-sm-block">
                                 </Col>
-                                <Col xs={9} className="p-0">
+                                <Col xs={12} sm={9} className="p-0">
                                     <Paging pageIndex={query.pageNo} pagesCount={props.shop.pagesCount} getUrl={getUrl} />
                                 </Col>
                             </Row>
                         </Container>
                     </Col>
                 </Row>
+                <Row className="product-filter-mobile-button d-block d-sm-none">
+                    <Button type="secondary" onClick={() => setPopupFilterOpen(true)} className="rounded-0">
+                        فیلتر
+                    </Button>
+                </Row>
+                <Popup isOpen={popupFilterOpen} setOpen={setPopupFilterOpen} className="container p-0">
+                    <ProductFilter
+                        categoryKindView={props.shop.categoryKind}
+                        setCategoryKind={setCategoryKind}
+                        selectedCategoryKinds={query.categoryKinds}
+                        brands={props.shop.brands}
+                        setBrand={setBrand}
+                        selectedBrands={query.brands}
+                        productProperies={props.shop.productProperties}
+                        selectedProductProperies={query.productProperies}
+                        setProductProperies={setProductProperies}
+                    />
+                </Popup>
             </Container>
         }
     </Layout>

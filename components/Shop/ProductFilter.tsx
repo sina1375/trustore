@@ -100,7 +100,8 @@ export default function ProductFilter(props: Props) {
                                     </Col>
                                 </Row>
                             </ProductFilterCollapse>
-                        </Row>)
+                        </Row>
+                    )
                 }
             </Col>
         </Row>
