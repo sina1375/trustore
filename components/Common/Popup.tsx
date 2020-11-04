@@ -25,7 +25,7 @@ export default function Popup(popupProps: Props) {
             transitions.map(({ item, props }) =>
                 item &&
                 <animated.div ref={contentBoundsRef} onClick={() => popupProps.setOpen(false)} style={props} className="container-fluid popup d-flex align-items-center justify-content-center">
-                    <div onClick={e => e.stopPropagation()} style={{ maxHeight: (contentBounds.height / 2) }} className={"popup-container" + (popupProps.className && " " + popupProps.className)}>
+                    <div onClick={e => e.stopPropagation()} style={{ maxHeight: (contentBounds.height - 100) }} className={"popup-container" + (popupProps.className && " " + popupProps.className)}>
                         <div className="popup-exit" onClick={() => popupProps.setOpen(false)}><BsX /></div>
                         {popupProps.children}
                     </div>

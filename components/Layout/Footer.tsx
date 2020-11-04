@@ -38,7 +38,7 @@ export default function Footer() {
                             <img className="footer-image" src="https://mail.enamad.ir/ImagesResource/ZW5hbWFkLmly.png" />
                         </Col>
                         <Col xs="auto" className="mb-3 mb-sm-0">
-                            <img className="footer-image" src="https://lh3.googleusercontent.com/proxy/6mhuoZA_DaY20n8vvPSVlRIXk6yT39O7O4PHAeKTUna8rhZBa2_82GLNLKgYG7btjQZgOi60QHctPoEVkciPy8gjvgolcacWWOY1xV4lzkIzeoqlu1nsvMU" />
+                            <img className="footer-image" src="https://denizsport.ir/wp-content/uploads/2019/06/samandehi-ir-4_graphic222shop-ir.jpg" />
                         </Col>
                         <Col xs="auto" className="mb-3 mb-sm-0">
                             <img className="footer-image" src="https://static.evand.net/images/organizations/logos/original/4841525b7f36e22483d4d8007f4b5d0c.jpg" />

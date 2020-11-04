@@ -15,7 +15,7 @@ interface Props {
 export default function Product(props: Props) {
     const [isHover, setHover] = useState(false);
 
-    return <Container className="product-shop-container pb-3" onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+    return <Container className="product-shop-container pb-3" onMouseOver={() => setHover(true)} onMouseLeave={() => setHover(false)} onMouseUp={() => setHover(false)}>
         <Row>
             <Col xs={12} className="p-0">
                 <LazyLoadingImage alt={props.product.fullTitle} className="product-shop-img p-2" src={props.product.thumbnailImagePath} />

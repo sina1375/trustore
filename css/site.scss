@@ -332,7 +332,8 @@ input.dark{
 	border-radius: 4px;
 	background-color: #ffffff;
 	position: relative;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .popup-exit

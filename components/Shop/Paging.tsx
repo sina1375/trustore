@@ -75,11 +75,15 @@ export function Paging(props: Props) {
             </Col>
             {pages.map(i =>
                 <Col xs="auto" className={"shop-paging-page-number" + (i === pageIndex ? " active" : "")}>
-                    <Link href={props.getUrl(i)}>
-                        <a>
-                            {i}
-                        </a>
-                    </Link>
+                    {i === pageIndex ?
+                        i
+                        :
+                        <Link href={props.getUrl(i)}>
+                            <a>
+                                {i}
+                            </a>
+                        </Link>
+                    }
                 </Col>
             )}
             <Col xs="auto">
