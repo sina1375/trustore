@@ -1,11 +1,12 @@
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { UrlObject } from "url";
 import Button from "../../components/Common/Button";
 import Popup from "../../components/Common/Popup";
+import SiteMap, { CreateSiteMap } from "../../components/Common/SiteMap";
 import Layout from "../../components/Layout/Layout";
 import { Paging } from "../../components/Shop/Paging";
 import Product from "../../components/Shop/Product";
@@ -14,6 +15,7 @@ import { postDataFetcher } from "../../helper/contans";
 import { ProductsFromBody } from "../../interfaces/productsFromBody";
 import { ShopQuery } from "../../interfaces/shopQuery";
 import { ShopView } from "../../interfaces/shopView";
+import { SiteMapItemView } from "../../interfaces/siteMapItemView";
 
 interface Props {
     shop?: ShopView,
@@ -47,9 +49,17 @@ function getParameterIDs(parameter: string | string[]) {
 
 export default function Shop(props: Props) {
     const [popupFilterOpen, setPopupFilterOpen] = useState(false);
+    const [siteMap, setSiteMap] = useState<SiteMapItemView[]>([]);
 
     const router = useRouter();
     var query = getQuery(router.query);
+
+    useEffect(() => {
+        if (props.shop) {
+            const _siteMap = CreateSiteMap(props.shop.categoryKind.id, props.shop.categoryKind.name);
+            setSiteMap(_siteMap);
+        }
+    }, [props.shop]);
 
     function setCategoryKind(categoryKindID: number) {
         if (query.categoryKinds.includes(categoryKindID)) {
@@ -100,7 +110,7 @@ export default function Shop(props: Props) {
 
     return <Layout title="فروشگاه">
         {props.shop?.products &&
-            <Container fluid={true} className="shop-container pt-4">
+            <Container fluid={true} className="shop-container pt-2 pt-sm-4">
                 <Row>
                     <Col xs={12}>
                         <Container>
@@ -119,8 +129,8 @@ export default function Shop(props: Props) {
                                     />
                                 </Col>
                                 <Col xs={12} sm={9}>
-                                    <Row className="mb-4">
-
+                                    <Row className="mb-2 mb-sm-4">
+                                        <SiteMap siteMapItemView={siteMap} />
                                     </Row>
                                     <Row>
                                         {props.shop.products.map(product =>
