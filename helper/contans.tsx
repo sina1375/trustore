@@ -1,10 +1,10 @@
 import { CartView } from "../interfaces/cartView";
 
 function getApiPath() {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     const targetUrl = 'http://trustore.ir';
 
-    return proxyUrl + targetUrl;
+    return targetUrl;
     // return "https://localhost:44340";
 }
 
@@ -13,11 +13,7 @@ function cartItemSessionKey() {
 }
 
 export function getDataFetcher(url: string) {
-    return fetch(getApiPath() + url, {
-        headers: {
-            'origin': 'x-requested-with',
-        }
-    })
+    return fetch(getApiPath() + url);
 }
 
 export function postDataFetcher(url: string, data: any) {
@@ -26,7 +22,6 @@ export function postDataFetcher(url: string, data: any) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'origin': 'x-requested-with',
         },
         body: JSON.stringify(data),
     });
