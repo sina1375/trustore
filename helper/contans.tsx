@@ -2,7 +2,7 @@ import { CartView } from "../interfaces/cartView";
 
 function getApiPath() {
     // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const targetUrl = 'http://trustore.ir';
+    const targetUrl = 'https://trustore.ir';
 
     return targetUrl;
     // return "https://localhost:44340";
